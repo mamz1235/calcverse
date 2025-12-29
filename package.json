@@ -1,0 +1,31 @@
+{
+  "name": "calcverse---the-ultimate-calculator-suite",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && node generate-routes.js",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@google/genai": "^1.33.0",
+    "react-router-dom": "^6.23.0",
+    "lucide-react": "^0.378.0",
+    "react": "^18.3.1",
+    "recharts": "^2.12.7",
+    "react-dom": "^18.3.1",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.2",
+    "three": "^0.164.1",
+    "@react-three/fiber": "^8.16.6",
+    "@react-three/drei": "^9.105.6",
+    "@types/three": "^0.164.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "@vitejs/plugin-react": "^4.2.1",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.11"
+  }
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Not Found - CalcVerse</title>
+    <script>
+      // Fallback redirect logic for unhandled routes (404s)
+      (function() {
+        var path = window.location.pathname;
+        var search = window.location.search;
+        var hash = window.location.hash;
+        
+        var segments = path.split('/').filter(function(p) { return p; });
+        var firstSegment = segments[0];
+        var validLangs = ['en', 'es', 'fr', 'ru', 'hi', 'ar'];
+
+        if (firstSegment && !validLangs.includes(firstSegment)) {
+           // If the first segment is NOT a language code (e.g. /calculator/paint),
+           // redirect to the English version preserving the rest of the path.
+           // e.g. /calculator/paint -> /en/calculator/paint
+           var newPath = '/en' + path;
+           // Fix potential double slashes if path was weird
+           newPath = newPath.replace('//', '/');
+           
+           window.location.replace(newPath + search + hash);
+        } else if (!firstSegment) {
+           // Root path 404 (unlikely if index.html exists, but safe fallback)
+           window.location.replace('/en/');
+        } else {
+           // If it has a language code but still 404'd (e.g. /en/invalid-page),
+           // redirect to that language's home page to recover gracefully
+           window.location.replace('/' + firstSegment + '/');
+        }
+      })();
+    </script>
+    <style>
+      body {
+        background-color: #0f172a;
+        color: #f8fafc;
+        font-family: system-ui, -apple-system, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        text-align: center;
+      }
+      .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid rgba(255, 255, 255, 0.1);
+        border-left-color: #6366f1;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 20px;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="spinner"></div>
+    <p>Redirecting...</p>
+  </body>
+</html>
